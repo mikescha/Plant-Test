@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using SQLite.Net.Platform.WinRT;
 
 namespace Plant_Test.UWP
 {
@@ -21,7 +22,9 @@ namespace Plant_Test.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new Plant_Test.App());
+            string dbPath = FileAccessHelper.GetLocalFilePath("miniplant.db3");
+
+            LoadApplication(new Plant_Test.App(dbPath, new SQLitePlatformWinRT ()));
         }
     }
 }

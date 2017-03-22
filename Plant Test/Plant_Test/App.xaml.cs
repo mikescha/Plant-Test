@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SQLite.Net.Interop;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -9,11 +11,14 @@ namespace Plant_Test
 {
 	public partial class App : Application
 	{
-		public App ()
+        public static PlantRepository PlantData { get; set; }
+
+		public App (string dbPath, ISQLitePlatform sqlitePlatform)
 		{
 			InitializeComponent();
 
-			MainPage = new Plant_Test.MainPage();
+            PlantData = new PlantRepository(sqlitePlatform, dbPath);
+            MainPage = new Plant_Test.MainPage();
 		}
 
 		protected override void OnStart ()

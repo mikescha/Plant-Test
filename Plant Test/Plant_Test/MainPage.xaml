@@ -4,8 +4,35 @@
              xmlns:local="clr-namespace:Plant_Test"
              x:Class="Plant_Test.MainPage">
 
-	<Label Text="Welcome to Xamarin Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    <StackLayout>
+        <Label x:Name="myLabel"/>
 
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Center">
+            <Button x:Name="AllPlants"
+                    Text="All Plants"
+                    Clicked="AllPlants_Clicked"/>
+            <Button x:Name="SomePlants"
+                    Text="Some Plants"
+                    Clicked="SomePlants_Clicked"/>
+        </StackLayout>
+
+        <StackLayout>
+            
+            <ListView x:Name="PlantsListView"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding PlantName}"/>
+                                <Label Text="{Binding ScientificName}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </StackLayout>
 </ContentPage>
