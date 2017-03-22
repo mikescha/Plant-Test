@@ -68,8 +68,9 @@ namespace Plant_Test.UWP
 
             if (needToCopy)
             {
-                try
-                {
+                //commented out the try/catch to better see the exception
+                //try
+                //{
                 System.Diagnostics.Debug.WriteLine("Trying to copy");
 
                 //We are here, so need to copy the file
@@ -154,16 +155,16 @@ namespace Plant_Test.UWP
                                 System.Diagnostics.Debug.WriteLine("About to copy");
                                 await sourceStream.CopyToAsync(targetStream);
                             }*/
-                }
+                //}
 
 
 
-                
+                /*
                 catch
                 {
                     //Something went wrong, need to put in some error handling eventually
                     ;
-                }
+                }*/
             }
 
         }
