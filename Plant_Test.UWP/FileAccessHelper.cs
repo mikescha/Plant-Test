@@ -40,7 +40,7 @@ namespace Plant_Test.UWP
             bool needToCopy = false;
 
             //TEMP CODE -- Always delete the file if it's there so we can confirm that the initial copying works
-            //File.Delete(Path.Combine(targetFolder.Path, fileName));
+            File.Delete(Path.Combine(targetFolder.Path, fileName));
 
             //check if the file exists, Null means it does 
             if (await targetFolder.TryGetItemAsync(fileName) != null)
