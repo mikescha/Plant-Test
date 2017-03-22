@@ -40,7 +40,7 @@ namespace Plant_Test.UWP
             bool needToCopy = false;
 
             //TEMP CODE -- Always delete the file if it's there so we can confirm that the initial copying works
-            //File.Delete(Path.Combine(targetFolder.Path, fileName));
+            File.Delete(Path.Combine(targetFolder.Path, fileName));
 
             //check if the file exists, Null means it does 
             if (await targetFolder.TryGetItemAsync(fileName) != null)
@@ -75,10 +75,12 @@ namespace Plant_Test.UWP
                 //We are here, so need to copy the file
                 
                 //First, get the file out of the app package
+                //ISSUE: For some reason, this is causing the targetFile to be created!!!
                 Uri sourceURI = new Uri("ms-appx:///" + fileName, UriKind.Absolute);
                 StorageFile sourceFile = await StorageFile.GetFileFromApplicationUriAsync(sourceURI);
 
                 //Second, create the file we want to write to
+                //ISSUE: This is going to fail because the file is already created and locked for write access
                 StorageFile targetFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
 
                 //There are several ways I've found to do the copying. Another one is commented out below if this doesn't work
