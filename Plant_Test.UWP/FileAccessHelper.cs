@@ -40,7 +40,7 @@ namespace Plant_Test.UWP
             bool needToCopy = false;
 
             //TEMP CODE -- Always delete the file if it's there so we can confirm that the initial copying works
-            File.Delete(Path.Combine(targetFolder.Path, fileName));
+            //File.Delete(Path.Combine(targetFolder.Path, fileName));
 
             //check if the file exists, Null means it does 
             if (await targetFolder.TryGetItemAsync(fileName) != null)
@@ -78,6 +78,11 @@ namespace Plant_Test.UWP
                 //ISSUE: For some reason, this is causing the targetFile to be created!!!
                 Uri sourceURI = new Uri("ms-appx:///" + fileName, UriKind.Absolute);
                 StorageFile sourceFile = await StorageFile.GetFileFromApplicationUriAsync(sourceURI);
+
+                    //Test code to confirm that we can do something with this
+                    System.Diagnostics.Debug.WriteLine(sourceFile.DisplayName);
+                    Windows.Storage.FileProperties.BasicProperties props = await sourceFile.GetBasicPropertiesAsync();
+                    System.Diagnostics.Debug.WriteLine(props.Size);
 
                 //Second, create the file we want to write to
                 //ISSUE: This is going to fail because the file is already created and locked for write access
